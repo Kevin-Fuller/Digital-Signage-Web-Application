@@ -73,7 +73,7 @@
                         <?php }else{ ?><?php }?>
 
 
-                        <a onclick="return confirm('Are you sure?')" href="process.php?delete=<?php echo $row['id']; ?>"
+                        <a onclick="return confirm('Are you sure you wish to delete this item?')" href="process.php?delete=<?php echo $row['id']; ?>"
                         class='delete'><span>Delete</span></a>
                         <?php if ($row['type']=='isItem'){?>
                             <?php
@@ -93,7 +93,11 @@
         </div>
 
     <!--Menu Items-->
-    <h3>Add Menu Item</h3>
+    <?php 
+        if ($update == true):
+        ?>
+        <div class="updating">
+                <h3>Add Menu Item</h3>
     <form action="process.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $id?>">
         <label>Item Name</label>
@@ -102,48 +106,68 @@
         <input type="text" name="price" value="<?php echo $price; ?>"  placeholder="Enter item price">
         <label>Item Description</label>
         <input type="text" name="description" value="<?php echo $description; ?>"  placeholder="Enter item description">
-        <?php 
-        if ($update == true):
-        ?>
-            <button type="submit" name="update">Update</button>
+        <button type="submit" name="update">Update</button>
+        </div>
+
         <?php else: ?>
+            <h3>Add Menu Item</h3>
+    <form action="process.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $id?>">
+        <label>Item Name</label>
+        <input type="text" name="item" value="<?php echo $item; ?>" placeholder="Enter item name">
+        <label>Item Price</label>
+        <input type="text" name="price" value="<?php echo $price; ?>"  placeholder="Enter item price">
+        <label>Item Description</label>
+        <input type="text" name="description" value="<?php echo $description; ?>"  placeholder="Enter item description">
             <button type="submit" name="save">SAVE</button>
         <?php endif; ?>
 
-    </form>
-
 
     <!--SubTitles / Subheaders -->
-    <h3>Add Subtitle</h3>
-    <form action="process.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo $id?>">
-        <label>Sub Title</label>
-        <input type="text" name="description" value="<?php echo $descriptionSubheader; ?>"  placeholder="Enter item description">
-        <?php 
+    <?php 
         if ($updateSubheader == true):
         ?>
-            <button type="submit" name="update">Update</button>
-        <?php else: ?>
-            <button type="submit" name="saveSubheader">SAVE</button>
-        <?php endif; ?>
+        <div class="updating">
+            <h3>Update Subtitle</h3>
+                <form action="process.php" method="POST">
+                    <input type="hidden" name="id" value="<?php echo $id?>">
+                    <label>Sub Title</label>
+                    <input type="text" name="description" value="<?php echo $descriptionSubheader; ?>"  placeholder="Enter item description">
+                        <button type="submit" name="update">Update</button>
+                </form>
+        </div>
 
-    </form>
+        <?php else: ?>
+        <h3>Add Subtitle</h3>
+            <form action="process.php" method="POST">
+                <input type="hidden" name="id" value="<?php echo $id?>">
+                <label>Sub Title</label>
+                <input type="text" name="description" value="<?php echo $descriptionSubheader; ?>"  placeholder="Enter item description">
+                <button type="submit" name="saveSubheader">SAVE</button>
+            </form>
+    <?php endif; ?>
 
     <!--Italics -->
-    <h3>Add Italic Message</h3>
+
+    <?php 
+    if ($updateItalics == true):
+        ?>
+        <div class="updating">
+        <h3>Update Italic Message</h3>
         <form action="process.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $id?>">
         <label>Italic Subheader</label>
         <input type="text" name="description" value="<?php echo $descriptionItalics; ?>"  placeholder="Enter item description">
-        <?php 
-        if ($updateItalics == true):
-        ?>
-            <button type="submit" name="update">Update</button>
+        <button type="submit" name="update">Update</button>
+    </div> 
         <?php else: ?>
+            <h3>Add Italic Message</h3>
+        <form action="process.php" method="POST">
+        <input type="hidden" name="id" value="<?php echo $id?>">
+        <label>Italic Subheader</label>
+        <input type="text" name="description" value="<?php echo $descriptionItalics; ?>"  placeholder="Enter item description">
             <button type="submit" name="saveItalics">SAVE</button>
         <?php endif; ?>
-
-    </form>
 
     <!--Color Selector -->
     <h3>Update Primary Color</h3>
