@@ -248,6 +248,17 @@
             </form>
         </div>
 
+        <div class="controlPanelSection">
+            <!--picture-->
+            <h3>Change backdrop picture</h3>
+
+            <form action="upload.php" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file">
+
+                <button type="submit" name="submit">Update Image</button>
+            </form>
+        </div>
+
     </div>
 
 </body>
