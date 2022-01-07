@@ -135,9 +135,22 @@
 
     </form>
 
+    <!--Color Selector -->
     <form action="color.php" method="POST">
-        <input type="color" name="color">
+        <input type="color" name="color" value="<?php
+                    $result = $mysqli->query("SELECT color FROM other WHERE id=1") or die($mysqli->error());
+                    $row = mysqli_fetch_array($result);
+                    echo($row[0]); ?>">
         <button type="submit" name="saveColor">SAVE</button>
+    </form>
+
+    <!--title-->
+    <form action="title.php" method="POST">
+        <input type="title" name="title" placeholder="<?php
+                    $result = $mysqli->query("SELECT title FROM other WHERE id=1") or die($mysqli->error());
+                    $row = mysqli_fetch_array($result);
+                    echo($row[0]); ?>">
+        <button type="submit" name="saveTitle">Update Title</button>
     </form>
 
     

@@ -15,7 +15,14 @@
 
         ?>
 
-        <div class="pageTitle">BURGERS & Fries and so much more</div>
+        <div class="pageTitle">
+            <?php
+                    $myTitle = $mysqli->query("SELECT title FROM other WHERE id=1") or die($mysqli->error());
+                    $row = mysqli_fetch_array($myTitle);
+                    echo($row[0]); 
+            ?>
+                    
+        </div>
         <div class="pageContent">
             
             <?php 
