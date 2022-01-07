@@ -73,7 +73,7 @@
                         <?php }else{ ?><?php }?>
 
 
-                        <a href="process.php?delete=<?php echo $row['id']; ?>"
+                        <a onclick="return confirm('Are you sure?')" href="process.php?delete=<?php echo $row['id']; ?>"
                         class='delete'><span>Delete</span></a>
                         <?php if ($row['type']=='isItem'){?>
                             <?php
