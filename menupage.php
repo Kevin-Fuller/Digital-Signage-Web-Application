@@ -10,7 +10,7 @@
 <body>
 
 <?php 
-        $mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
+        include 'conn.php';
         $result = $mysqli->query('SELECT * from data');
 
         ?>
@@ -55,6 +55,15 @@
             <?php endwhile;?>   
             
         </div>
+        <style> 
+        .subtitle,
+        .pageTitle {
+            color: <?php
+                    $result = $mysqli->query("SELECT color FROM other WHERE id=1") or die($mysqli->error());
+                    $row = mysqli_fetch_array($result);
+                    echo($row[0]); ?>;!
+        }
+        </style>
     
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Board Generator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <?php require_once 'process.php'; ?>
@@ -24,7 +25,7 @@
         <?php endif ?>
 
     <?php 
-        $mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
+        include 'conn.php';
         $result = $mysqli->query('SELECT * from data');
 
         ?>
@@ -133,6 +134,16 @@
         <?php endif; ?>
 
     </form>
+
+    <form action="color.php" method="POST">
+        <input type="color" name="color">
+        <button type="submit" name="saveColor">SAVE</button>
+    </form>
+
     
+
+
+
+
 </body>
 </html>

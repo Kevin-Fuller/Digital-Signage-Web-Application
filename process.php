@@ -12,7 +12,8 @@ $update = false;
 $updateSubheader = false;
 $updateItalics = false;
 
-$mysqli = new mysqli('localhost', 'root', '', 'crud') or die(mysqli_error($mysqli));
+include 'conn.php';
+
 
 if (isset($_POST['save'])) {
     $itemName = $_POST['item'];
