@@ -10,7 +10,6 @@
 
 <body>
     <?php require_once 'process.php'; 
-    
 
     //Message section displayed when a button is successfully clicked and processed in database.
     if (isset($_SESSION['message'])): ?>
@@ -112,54 +111,71 @@
     </div>
 
 
-    <!--Menu Items-->
-    <?php 
-        if ($update == true): ?>
-            <div class="updating">
-                <h3>Add Menu Item</h3>
-
-                <form action="process.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $id?>">
-
-                    <label>Item Name</label>
-                    <input type="text" name="item" value="<?php echo $item; ?>" placeholder="Enter item name">
-
-                    <label>Item Price</label>
-                    <input type="text" name="price" value="<?php echo $price; ?>"  placeholder="Enter item price">
-
-                    <label>Item Description</label>
-                    <input type="text" name="description" value="<?php echo $description; ?>"  placeholder="Enter item description">
-
-                    <button type="submit" name="update">Update</button>
-                </form>
-            </div>
-
-        <?php else: ?>
-
-            <h3>Add Menu Item</h3>
+    <div class="controlPanel">
+        <div class="controlPanelSection">
             
-            <form action="process.php" method="POST">
-                <input type="hidden" name="id" value="<?php echo $id?>">
-                
-                <label>Item Name</label>
-                <input type="text" name="item" value="<?php echo $item; ?>" placeholder="Enter item name">
-                
-                <label>Item Price</label>
-                <input type="text" name="price" value="<?php echo $price; ?>"  placeholder="Enter item price">
-                
-                <label>Item Description</label>
-                <input type="text" name="description" value="<?php echo $description; ?>"  placeholder="Enter item description">
-                <button type="submit" name="save">SAVE</button>
-            </form>
-        
-        <?php endif; ?>
+            <!--Menu Items-->
+            <?php 
+                if ($update == true): ?>
+                    <div class="updating">
+                        <h3>Add Menu Item</h3>
 
+                        <form action="process.php" method="POST" class="menuItems">
+                            <input type="hidden" name="id" value="<?php echo $id?>">
 
-    <!--SubTitles / Subheaders -->
-    <?php 
-        if ($updateSubheader == true): ?>
-            <div class="updating">
-                <h3>Update Subtitle</h3>
+                            <label>Item Name</label>
+                            <input type="text" name="item" value="<?php echo $item; ?>" placeholder="Enter item name">
+
+                            <label>Item Price</label>
+                            <input type="text" name="price" value="<?php echo $price; ?>"  placeholder="Enter item price">
+
+                            <label>Item Description</label>
+                            <input type="text" name="description" value="<?php echo $description; ?>"  placeholder="Enter item description">
+
+                            <button type="submit" name="update">Update</button>
+                        </form>
+                    </div>
+
+                <?php else: ?>
+
+                    <h3>Add Menu Item</h3>
+                    
+                    <form action="process.php" method="POST" class="menuItems">
+                        <input type="hidden" name="id" value="<?php echo $id?>">
+                        
+                        <label>Item Name</label>
+                        <input type="text" name="item" value="<?php echo $item; ?>" placeholder="Enter item name">
+                        
+                        <label>Item Price</label>
+                        <input type="text" name="price" value="<?php echo $price; ?>"  placeholder="Enter item price">
+                        
+                        <label>Item Description</label>
+                        <input type="text" name="description" value="<?php echo $description; ?>"  placeholder="Enter item description">
+                        <button type="submit" name="save">SAVE</button>
+                    </form>
+                
+                <?php endif; ?>
+        </div>
+
+        <div class="controlPanelSection">
+            <!--SubTitles / Subheaders -->
+            <?php 
+                if ($updateSubheader == true): ?>
+                    <div class="updating">
+                        <h3>Update Subtitle</h3>
+
+                            <form action="process.php" method="POST">
+                                <input type="hidden" name="id" value="<?php echo $id?>">
+                                
+                                <label>Sub Title</label>
+                                <input type="text" name="description" value="<?php echo $descriptionSubheader; ?>"  placeholder="Enter item description">
+                                
+                                <button type="submit" name="update">Update</button>
+                            </form>
+                    </div>
+
+                <?php else: ?>
+                    <h3>Add Subtitle</h3>
 
                     <form action="process.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $id?>">
@@ -167,76 +183,72 @@
                         <label>Sub Title</label>
                         <input type="text" name="description" value="<?php echo $descriptionSubheader; ?>"  placeholder="Enter item description">
                         
-                        <button type="submit" name="update">Update</button>
+                        <button type="submit" name="saveSubheader">SAVE</button>
                     </form>
-            </div>
+                <?php endif; ?>
+        </div>
 
-        <?php else: ?>
-            <h3>Add Subtitle</h3>
 
-            <form action="process.php" method="POST">
-                <input type="hidden" name="id" value="<?php echo $id?>">
-                
-                <label>Sub Title</label>
-                <input type="text" name="description" value="<?php echo $descriptionSubheader; ?>"  placeholder="Enter item description">
-                
-                <button type="submit" name="saveSubheader">SAVE</button>
+        <div class="controlPanelSection">
+            <!--Italics -->
+            <?php 
+                if ($updateItalics == true): ?>
+                    <div class="updating">
+                        <h3>Update Italic Message</h3>
+                        
+                        <form action="process.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $id?>">
+                            
+                            <label>Italic Subheader</label>
+                            <input type="text" name="description" value="<?php echo $descriptionItalics; ?>"  placeholder="Enter item description">
+                            
+                            <button type="submit" name="update">Update</button>
+                        </form>
+                    </div>
+
+                    <?php else: ?>
+                        <h3>Add Italic Message</h3>
+                        
+                        <form action="process.php" method="POST">
+                            <input type="hidden" name="id" value="<?php echo $id?>">
+                            
+                            <label>Italic Subheader</label>
+                            <input type="text" name="description" value="<?php echo $descriptionItalics; ?>"  placeholder="Enter item description">
+                            
+                            <button type="submit" name="saveItalics">SAVE</button>
+                        </form>
+                <?php endif; ?>
+        </div>
+
+        <div class="controlPanelSection">
+            <!--Color Selector -->
+            <h3>Update Primary Color</h3>
+            
+            <form action="color.php" method="POST">
+                <input type="color" name="color" value="<?php 
+                    $result = $mysqli->query("SELECT color FROM other WHERE id=1") or die($mysqli->error());
+                    $row = mysqli_fetch_array($result);
+                    echo($row[0]); ?>" class="colorSelector">
+
+                <button type="submit" name="saveColor">SAVE</button>
             </form>
-        <?php endif; ?>
+        </div>
 
-    <!--Italics -->
+        <div class="controlPanelSection">
+            <!--title-->
+            <h3>Change Board Title</h3>
 
-    <?php 
-        if ($updateItalics == true): ?>
-            <div class="updating">
-                <h3>Update Italic Message</h3>
-                
-                <form action="process.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $id?>">
-                    
-                    <label>Italic Subheader</label>
-                    <input type="text" name="description" value="<?php echo $descriptionItalics; ?>"  placeholder="Enter item description">
-                    
-                    <button type="submit" name="update">Update</button>
-                </form>
-            </div>
+            <form action="title.php" method="POST">
+                <input type="text" name="title" placeholder="<?php
+                    $result = $mysqli->query("SELECT title FROM other WHERE id=1") or die($mysqli->error());
+                    $row = mysqli_fetch_array($result);
+                    echo($row[0]); ?>">
 
-            <?php else: ?>
-                <h3>Add Italic Message</h3>
-                
-                <form action="process.php" method="POST">
-                    <input type="hidden" name="id" value="<?php echo $id?>">
-                    
-                    <label>Italic Subheader</label>
-                    <input type="text" name="description" value="<?php echo $descriptionItalics; ?>"  placeholder="Enter item description">
-                    
-                    <button type="submit" name="saveItalics">SAVE</button>
-                </form>
-        <?php endif; ?>
+                <button type="submit" name="saveTitle">Update Title</button>
+            </form>
+        </div>
 
-    <!--Color Selector -->
-    <h3>Update Primary Color</h3>
-    
-    <form action="color.php" method="POST">
-        <input type="color" name="color" value="<?php 
-            $result = $mysqli->query("SELECT color FROM other WHERE id=1") or die($mysqli->error());
-            $row = mysqli_fetch_array($result);
-            echo($row[0]); ?>">
-
-        <button type="submit" name="saveColor">SAVE</button>
-    </form>
-
-    <!--title-->
-    <h3>Change Board Title</h3>
-
-    <form action="title.php" method="POST">
-        <input type="text" name="title" placeholder="<?php
-            $result = $mysqli->query("SELECT title FROM other WHERE id=1") or die($mysqli->error());
-            $row = mysqli_fetch_array($result);
-            echo($row[0]); ?>">
-
-        <button type="submit" name="saveTitle">Update Title</button>
-    </form>
+    </div>
 
 </body>
 </html>

@@ -20,7 +20,7 @@ if (isset($_POST['save'])) {
     $price = $_POST['price'];
     $description = $_POST['description'];
 
-    $mysqli->query("INSERT INTO data (item, price, description, type) VALUES('$itemName', '$price', '$description', 'isItem')") or die($mysqli->error());
+    $mysqli->query("INSERT INTO data (item, price, description, type) VALUES('$itemName', '$price', '$description', 'isItem')") or die($mysqli->error);
 
     $_SESSION['message'] = "Record has been saved!";
     $_SESSION['msg_type'] = "success";
