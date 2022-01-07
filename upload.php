@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 if (isset($_POST['submit'])) {
     $file = $_FILES['file'];
@@ -22,7 +22,8 @@ if (isset($_POST['submit'])) {
 
                 move_uploaded_file($fileTmpName, $fileDestination);
 
-
+                $_SESSION['message'] = "Image has been uploaded!";
+                $_SESSION['msg_type'] = "success";
 
                 header("Location: index.php?UploadSuccess");
             } else {
