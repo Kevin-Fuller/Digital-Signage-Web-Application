@@ -10,7 +10,7 @@ if (isset($_POST['saveTitle'])) {
 
     $mysqli->query("
     UPDATE other 
-    SET color = '$title' 
+    SET title = '$title' 
     WHERE id=1") or die($mysqli->error());
 
     $_SESSION['message'] = "Title has been saved!";
