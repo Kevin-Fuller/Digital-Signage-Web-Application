@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.alert {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+.alert-success {
+  background-color: rgb(117, 189, 126);
+}
+.alert-danger {
+  background-color: rgb(228, 133, 104);
+}
+
+.menuPageContent {
+  width: 100vw;
+}
+
+tr {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  display: flex;
+
+  background-color: #eeeeee;
+  margin: auto;
+  text-align: left;
+}
+
+.head {
+  background-color: black;
+  color: white;
+  text-align: left;
+}
+
+td {
+  width: 22%;
+}
+
+.buttons {
+  width: 34%;
+  padding-left: 4%;
+}
+
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+.edit,
+.delete,
+.inStock,
+.outStock {
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 885px) {
+  .edit,
+  .delete,
+  .inStock,
+  .outStock {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding: 10px 4px;
+  }
+
+  .edit span,
+  .delete span,
+  .inStock span,
+  .outStock span {
+    display: none;
+  }
+
+  .edit:after {
+    content: "✏️";
+  }
+  .delete:after {
+    content: "❌";
+  }
+  .inStock:after {
+    content: "IN";
+    padding: 10px 7px;
+  }
+  .outStock:after {
+    content: "OUT";
+  }
+
+  td {
+    width: 22%;
+  }
+
+  .buttons {
+    width: 34%;
+    padding-left: 4%;
+  }
+}
+
+.edit {
+  background-color: rgb(255, 208, 0);
+  color: black;
+}
+
+.delete {
+  background-color: rgb(224, 71, 24);
+  color: white;
+}
+
+.inStock {
+  background-color: rgb(27, 156, 44);
+  color: white;
+}
+
+.outStock {
+  background-color: rgb(87, 87, 87);
+  color: white;
+}

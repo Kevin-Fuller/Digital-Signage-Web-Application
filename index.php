@@ -30,53 +30,60 @@
 
         ?>
 
+        <h1>Current Menu Board</h1>
         <div class="">
-            <table class="">
+            <table class="menuPageContent">
+                <tr class="head">
+                    <td>Item</td>
+                    <td>Price</td>
+                    <td>Description</td>
+                    <td class="buttons">Action</td>
+                </tr>
             <?php 
                 while ($row = $result->fetch_assoc()): 
             ?>
                 <tr>
                     <?php if ($row['type']=='isItem'){?>
-                    <td><b>Item: </b><?php echo $row['item']; ?></td>
-                    <td><b>Price: </b><?php echo $row['price']; ?></td>
-                    <td><b>Description: </b><?php echo $row['description']; ?></td>
-                    <td>
+                    <td><b></b><?php echo $row['item']; ?></td>
+                    <td><b></b><?php echo $row['price']; ?></td>
+                    <td><b></b><?php echo $row['description']; ?></td>
+                    <td class="buttons">
                     <?php }elseif  ($row['type']=='isSubheader'){?>
+                    <td><b>Subheader</b></td>
                     <td> </td>
-                    <td> </td>
-                    <td><b>Sub Title: </b><?php echo $row['description']; ?></td>
-                    <td>
+                    <td><b></b><?php echo $row['description']; ?></td>
+                    <td class="buttons">
 
                     <?php }elseif  ($row['type']=='isItalics'){?>
+                    <td><b>Italic Subheader</b></td>
                     <td> </td>
-                    <td> </td>
-                    <td><b>Italics Subheader: </b><?php echo $row['description']; ?></td>
-                    <td>
+                    <td><b></b><?php echo $row['description']; ?></td>
+                    <td class="buttons">
                     <?php }else{ ?><div></div><?php }?>
 
                         <?php if ($row['type']=='isItem'){?>
                         <a href="index.php?edit=<?php echo $row['id']; ?>"
-                        class=''>Edit </a>
+                        class='edit'><span>Edit</span></a>
                         <?php }elseif  ($row['type']=='isSubheader'){?>
                             <a href="index.php?editSubheader=<?php echo $row['id']; ?>"
-                        class=''>Edit </a>
+                        class='edit'><span>Edit</span></a>
                         <?php }elseif  ($row['type']=='isItalics'){?>
                             <a href="index.php?editItalics=<?php echo $row['id']; ?>"
-                        class=''>Edit </a>
-                        <?php }else{ ?><div></div><?php }?>
+                        class='edit'><span>Edit</span></a>
+                        <?php }else{ ?><?php }?>
 
 
                         <a href="process.php?delete=<?php echo $row['id']; ?>"
-                        class=''>Delete </a>
+                        class='delete'><span>Delete</span></a>
                         <?php if ($row['type']=='isItem'){?>
                             <?php
                             if ($row['inOutStock'] == 0):
                             ?>
                             <a href="process.php?outstock=<?php echo $row['id']; ?>"
-                            class=''>Out of Stock </a>
+                            class='outStock'><span>Out of Stock</span></a>
                             <?php else: ?>
                             <a href="process.php?instock=<?php echo $row['id']; ?>"
-                            class=''>In Stock </a>
+                            class='inStock'><span>In Stock</span></a>
                             <?php endif; } else {}?>
 
                     </td>
@@ -86,6 +93,7 @@
         </div>
 
     <!--Menu Items-->
+    <h3>Add Menu Item</h3>
     <form action="process.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $id?>">
         <label>Item Name</label>
@@ -106,6 +114,7 @@
 
 
     <!--SubTitles / Subheaders -->
+    <h3>Add Subtitle</h3>
     <form action="process.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $id?>">
         <label>Sub Title</label>
@@ -121,6 +130,7 @@
     </form>
 
     <!--Italics -->
+    <h3>Add Italic Message</h3>
         <form action="process.php" method="POST">
         <input type="hidden" name="id" value="<?php echo $id?>">
         <label>Italic Subheader</label>
@@ -136,6 +146,7 @@
     </form>
 
     <!--Color Selector -->
+    <h3>Update Primary Color</h3>
     <form action="color.php" method="POST">
         <input type="color" name="color" value="<?php
                     $result = $mysqli->query("SELECT color FROM other WHERE id=1") or die($mysqli->error());
@@ -145,6 +156,7 @@
     </form>
 
     <!--title-->
+    <h3>Change Board Title</h3>
     <form action="title.php" method="POST">
         <input type="title" name="title" placeholder="<?php
                     $result = $mysqli->query("SELECT title FROM other WHERE id=1") or die($mysqli->error());
