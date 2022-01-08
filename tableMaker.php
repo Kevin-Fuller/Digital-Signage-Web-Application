@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+if (isset($_SESSION['username'])) {
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +24,7 @@
                 <input type="hidden" name="tableName" value="<?php echo $row['userTableName']?>">
                 <td><?php echo $row['userTableName'] ?></td>
                 <td><button type="submit">Edit Page</button></td>
+                <td><a href="scripts/createNewBoard.php?delete=<?php echo $row['userTableName']?>">Delete</a></td>
                 <input type="hidden" name="tableName" value="<?php echo $row['userTableName']?>">
             </form>
         </tr>
@@ -38,3 +45,10 @@
     
 </body>
 </html>
+
+<?php
+} else {
+    header("Location: login.php");
+}
+
+?>
