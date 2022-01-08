@@ -18,7 +18,7 @@ if (isset($_POST['saveTitle'])) {
     $_SESSION['message'] = "Title has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 

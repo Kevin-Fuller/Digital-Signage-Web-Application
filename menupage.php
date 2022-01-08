@@ -10,7 +10,7 @@
 <body>
 
 <?php 
-        include 'conn.php';
+        include 'scripts/conn.php';
         $result = $mysqli->query('SELECT * from data');
 
         ?>

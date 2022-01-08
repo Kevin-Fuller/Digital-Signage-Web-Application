@@ -15,12 +15,10 @@ if (isset($_SESSION['username'])) {
 </head>
 
 <body>
-    <?php require_once 'process.php'; 
-
+    <?php require_once 'scripts/process.php'; 
 
 
     $currentTableName = $_GET['currentTableName'];
-    echo "TableName: ".$currentTableName;
 
     
 
@@ -37,11 +35,14 @@ if (isset($_SESSION['username'])) {
 
     <!---Connecting to database--->
     <?php 
-    include 'conn.php';
+    include 'scripts/conn.php';
     $result = $mysqli->query('SELECT * from data WHERE tableGroup = "'.$currentTableName.'"');?>
 
+
+    <a href="tablemaker.php">RETURN</a>
+    <a target = "_blank" href="menupage.php">Preview Board</a>
     <!--- Displaying all elements in database --->
-    <h1>Current Menu Board</h1>
+    <h1><?php echo $currentTableName?></h1>
     <div class="">
         <table class="menuPageContent">
             <tr class="head">
@@ -105,16 +106,16 @@ if (isset($_SESSION['username'])) {
 
             <!---Delete Button --->
 
-            <a onclick="return confirm('Are you sure you wish to delete this item?')" href="process.php?delete=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='delete'><span>Delete</span></a>
+            <a onclick="return confirm('Are you sure you wish to delete this item?')" href="scripts/process.php?delete=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='delete'><span>Delete</span></a>
             
             <!---IN or Out of Stock Button --->
             <?php 
             if ($row['type']=='isItem'){
                 if ($row['inOutStock'] == 0): ?>
-                    <a href="process.php?outstock=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='outStock'><span>Out of Stock</span></a>
+                    <a href="scripts/process.php?outstock=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='outStock'><span>Out of Stock</span></a>
             
                 <?php else: ?>
-                    <a href="process.php?instock=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='inStock'><span>In Stock</span></a>
+                    <a href="scripts/process.php?instock=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='inStock'><span>In Stock</span></a>
                 
                 <?php endif; } else {}?>
                 </td>
@@ -133,7 +134,7 @@ if (isset($_SESSION['username'])) {
                     <div class="updating">
                         <h3>Add Menu Item</h3>
 
-                        <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST" class="menuItems">
+                        <form action="scripts/process.php?currentTableName=<?php echo $currentTableName;?>" method="POST" class="menuItems">
                             <input type="hidden" name="id" value="<?php echo $id?>">
 
                             <label>Item Name</label>
@@ -153,7 +154,7 @@ if (isset($_SESSION['username'])) {
 
                     <h3>Add Menu Item</h3>
                     
-                    <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST" class="menuItems">
+                    <form action="scripts/process.php?currentTableName=<?php echo $currentTableName;?>" method="POST" class="menuItems">
                         <input type="hidden" name="id" value="<?php echo $id?>">
                         
                         <label>Item Name</label>
@@ -177,7 +178,7 @@ if (isset($_SESSION['username'])) {
                     <div class="updating">
                         <h3>Update Subtitle</h3>
 
-                            <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
+                            <form action="scripts/process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $id?>">
                                 
                                 <label>Sub Title</label>
@@ -190,7 +191,7 @@ if (isset($_SESSION['username'])) {
                 <?php else: ?>
                     <h3>Add Subtitle</h3>
 
-                    <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
+                    <form action="scripts/process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                         <input type="hidden" name="id" value="<?php echo $id?>">
                         
                         <label>Sub Title</label>
@@ -209,7 +210,7 @@ if (isset($_SESSION['username'])) {
                     <div class="updating">
                         <h3>Update Italic Message</h3>
                         
-                        <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
+                        <form action="scripts/process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                             <input type="hidden" name="id" value="<?php echo $id?>">
                             
                             <label>Italic Subheader</label>
@@ -222,7 +223,7 @@ if (isset($_SESSION['username'])) {
                     <?php else: ?>
                         <h3>Add Italic Message</h3>
                         
-                        <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
+                        <form action="scripts/process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                             <input type="hidden" name="id" value="<?php echo $id?>">
                             
                             <label>Italic Subheader</label>
@@ -237,7 +238,7 @@ if (isset($_SESSION['username'])) {
             <!--Color Selector -->
             <h3>Update Primary Color</h3>
             
-            <form action="color.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
+            <form action="scripts/color.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                 <input type="color" name="color" value="<?php 
                     $result = $mysqli->query("SELECT color FROM other WHERE tableName='$currentTableName'") or die($mysqli->error());
                     $row = mysqli_fetch_array($result);
@@ -251,7 +252,7 @@ if (isset($_SESSION['username'])) {
             <!--title-->
             <h3>Change Board Title</h3>
 
-            <form action="title.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
+            <form action="scripts/title.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                 <input type="text" name="title" placeholder="<?php
                     $result = $mysqli->query("SELECT title FROM other WHERE tableName = '$currentTableName'") or die($mysqli->error());
                     $row = mysqli_fetch_array($result);
@@ -265,7 +266,7 @@ if (isset($_SESSION['username'])) {
             <!--picture-->
             <h3>Change backdrop picture</h3>
 
-            <form action="upload.php?currentTableName=<?php echo $currentTableName;?>" method="POST" enctype="multipart/form-data">
+            <form action="scripts/upload.php?currentTableName=<?php echo $currentTableName;?>" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file">
 
                 <button type="submit" name="submit">Update Image</button>

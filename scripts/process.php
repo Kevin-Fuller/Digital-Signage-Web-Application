@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+
 
 $id = 0;
 $item = "";
@@ -26,7 +26,7 @@ if (isset($_POST['save'])) {
     $_SESSION['message'] = "Record has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 if (isset($_POST['saveSubheader'])) {
@@ -37,7 +37,7 @@ if (isset($_POST['saveSubheader'])) {
     $_SESSION['message'] = "Record has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 if (isset($_POST['saveItalics'])) {
@@ -48,7 +48,7 @@ if (isset($_POST['saveItalics'])) {
     $_SESSION['message'] = "Record has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 if(isset($_GET['delete'])) {
@@ -58,7 +58,7 @@ if(isset($_GET['delete'])) {
     $_SESSION['message'] = "Record has been deleted!";
     $_SESSION['msg_type'] = "danger";
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 
@@ -92,14 +92,14 @@ if (isset($_GET['outstock'])){
     $id = $_GET['outstock'];
     $mysqli->query("UPDATE data SET inOutStock = 1 WHERE id=$id") or die($mysqli->error());
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 if (isset($_GET['instock'])){
     $id = $_GET['instock'];
     $mysqli->query("UPDATE data SET inOutStock = 0 WHERE id=$id") or die($mysqli->error());
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 
@@ -111,7 +111,7 @@ if (isset($_POST['update'])){
 
     $mysqli->query("UPDATE data SET item='$item', price='$price', description='$description' WHERE id=$id") or die($mysqli->error());
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 

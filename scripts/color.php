@@ -18,7 +18,7 @@ if (isset($_POST['saveColor'])) {
     $_SESSION['message'] = "Color has been saved! '$currentTableName'";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php?currentTableName=$currentTableName");
+    header("location: ../index.php?currentTableName=$currentTableName");
 }
 
 

@@ -13,7 +13,7 @@ if (isset($_SESSION['username'])) {
     <title>Document</title>
 </head>
 <body>
-    <?php include 'conn.php';
+    <?php include 'scripts/conn.php';
 
     $result = $mysqli->query('SELECT * from tablegenerator'); ?>
     

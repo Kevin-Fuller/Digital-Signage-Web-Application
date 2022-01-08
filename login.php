@@ -19,7 +19,7 @@
 <?php 
 session_start();
 
-include 'conn.php';
+include 'scripts/conn.php';
 
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
