@@ -14,40 +14,41 @@ $updateItalics = false;
 
 include 'conn.php';
 
+$currentTableName = $_GET['currentTableName'];
 
 if (isset($_POST['save'])) {
     $itemName = $_POST['item'];
     $price = $_POST['price'];
     $description = $_POST['description'];
 
-    $mysqli->query("INSERT INTO data (item, price, description, type) VALUES('$itemName', '$price', '$description', 'isItem')") or die($mysqli->error);
+    $mysqli->query("INSERT INTO data (item, price, description, type, tableGroup) VALUES('$itemName', '$price', '$description', 'isItem', '$currentTableName')") or die($mysqli->error);
 
     $_SESSION['message'] = "Record has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 if (isset($_POST['saveSubheader'])) {
     $description = $_POST['description'];
 
-    $mysqli->query("INSERT INTO data (description, type) VALUES('$description', 'isSubheader')") or die($mysqli->error());
+    $mysqli->query("INSERT INTO data (description, type, tableGroup) VALUES('$description', 'isSubheader','$currentTableName')") or die($mysqli->error());
 
     $_SESSION['message'] = "Record has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 if (isset($_POST['saveItalics'])) {
     $description = $_POST['description'];
 
-    $mysqli->query("INSERT INTO data (description, type) VALUES('$description', 'isItalics')") or die($mysqli->error());
+    $mysqli->query("INSERT INTO data (description, type, tableGroup) VALUES('$description', 'isItalics','$currentTableName')") or die($mysqli->error());
 
     $_SESSION['message'] = "Record has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 if(isset($_GET['delete'])) {
@@ -57,7 +58,7 @@ if(isset($_GET['delete'])) {
     $_SESSION['message'] = "Record has been deleted!";
     $_SESSION['msg_type'] = "danger";
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 
@@ -91,14 +92,14 @@ if (isset($_GET['outstock'])){
     $id = $_GET['outstock'];
     $mysqli->query("UPDATE data SET inOutStock = 1 WHERE id=$id") or die($mysqli->error());
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 if (isset($_GET['instock'])){
     $id = $_GET['instock'];
     $mysqli->query("UPDATE data SET inOutStock = 0 WHERE id=$id") or die($mysqli->error());
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 
@@ -110,7 +111,7 @@ if (isset($_POST['update'])){
 
     $mysqli->query("UPDATE data SET item='$item', price='$price', description='$description' WHERE id=$id") or die($mysqli->error());
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 

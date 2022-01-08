@@ -9,6 +9,7 @@
 
 body {
   background-color: #1a2238;
+  overflow-x: hidden;
 }
 
 .alert {

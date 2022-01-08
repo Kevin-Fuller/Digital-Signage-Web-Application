@@ -11,6 +11,13 @@
 <body>
     <?php require_once 'process.php'; 
 
+
+
+    $currentTableName = $_GET['currentTableName'];
+    echo "TableName: ".$currentTableName;
+
+    
+
     //Message section displayed when a button is successfully clicked and processed in database.
     if (isset($_SESSION['message'])): ?>
         <div class="alert alert-<?=$_SESSION['msg_type']?>">
@@ -25,7 +32,7 @@
     <!---Connecting to database--->
     <?php 
     include 'conn.php';
-    $result = $mysqli->query('SELECT * from data');?>
+    $result = $mysqli->query('SELECT * from data WHERE tableGroup = "'.$currentTableName.'"');?>
 
     <!--- Displaying all elements in database --->
     <h1>Current Menu Board</h1>
@@ -72,19 +79,19 @@
             <?php //If it is an item:
             if ($row['type']=='isItem'){?>
 
-                    <a href="index.php?edit=<?php echo $row['id']; ?>"
+                    <a href="index.php?edit=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>"
                         class='edit'><span>Edit</span></a>
             
             <?php //If it is a subheader
             } elseif ($row['type']=='isSubheader'){?>
 
-                    <a href="index.php?editSubheader=<?php echo $row['id']; ?>"
+                    <a href="index.php?editSubheader=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>"
                         class='edit'><span>Edit</span></a>
             
             <?php //If it is italic subheader
             } elseif ($row['type']=='isItalics'){?>
 
-                    <a href="index.php?editItalics=<?php echo $row['id']; ?>"
+                    <a href="index.php?editItalics=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>"
                         class='edit'><span>Edit</span></a>
             
             <?php //If I ever add new items add buttons here
@@ -92,16 +99,16 @@
 
             <!---Delete Button --->
 
-            <a onclick="return confirm('Are you sure you wish to delete this item?')" href="process.php?delete=<?php echo $row['id']; ?>" class='delete'><span>Delete</span></a>
+            <a onclick="return confirm('Are you sure you wish to delete this item?')" href="process.php?delete=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='delete'><span>Delete</span></a>
             
             <!---IN or Out of Stock Button --->
             <?php 
             if ($row['type']=='isItem'){
                 if ($row['inOutStock'] == 0): ?>
-                    <a href="process.php?outstock=<?php echo $row['id']; ?>" class='outStock'><span>Out of Stock</span></a>
+                    <a href="process.php?outstock=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='outStock'><span>Out of Stock</span></a>
             
                 <?php else: ?>
-                    <a href="process.php?instock=<?php echo $row['id']; ?>" class='inStock'><span>In Stock</span></a>
+                    <a href="process.php?instock=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>" class='inStock'><span>In Stock</span></a>
                 
                 <?php endif; } else {}?>
                 </td>
@@ -120,7 +127,7 @@
                     <div class="updating">
                         <h3>Add Menu Item</h3>
 
-                        <form action="process.php" method="POST" class="menuItems">
+                        <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST" class="menuItems">
                             <input type="hidden" name="id" value="<?php echo $id?>">
 
                             <label>Item Name</label>
@@ -140,7 +147,7 @@
 
                     <h3>Add Menu Item</h3>
                     
-                    <form action="process.php" method="POST" class="menuItems">
+                    <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST" class="menuItems">
                         <input type="hidden" name="id" value="<?php echo $id?>">
                         
                         <label>Item Name</label>
@@ -164,7 +171,7 @@
                     <div class="updating">
                         <h3>Update Subtitle</h3>
 
-                            <form action="process.php" method="POST">
+                            <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $id?>">
                                 
                                 <label>Sub Title</label>
@@ -177,7 +184,7 @@
                 <?php else: ?>
                     <h3>Add Subtitle</h3>
 
-                    <form action="process.php" method="POST">
+                    <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                         <input type="hidden" name="id" value="<?php echo $id?>">
                         
                         <label>Sub Title</label>
@@ -196,7 +203,7 @@
                     <div class="updating">
                         <h3>Update Italic Message</h3>
                         
-                        <form action="process.php" method="POST">
+                        <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                             <input type="hidden" name="id" value="<?php echo $id?>">
                             
                             <label>Italic Subheader</label>
@@ -209,7 +216,7 @@
                     <?php else: ?>
                         <h3>Add Italic Message</h3>
                         
-                        <form action="process.php" method="POST">
+                        <form action="process.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                             <input type="hidden" name="id" value="<?php echo $id?>">
                             
                             <label>Italic Subheader</label>
@@ -224,9 +231,9 @@
             <!--Color Selector -->
             <h3>Update Primary Color</h3>
             
-            <form action="color.php" method="POST">
+            <form action="color.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                 <input type="color" name="color" value="<?php 
-                    $result = $mysqli->query("SELECT color FROM other WHERE id=1") or die($mysqli->error());
+                    $result = $mysqli->query("SELECT color FROM other WHERE tableName='$currentTableName'") or die($mysqli->error());
                     $row = mysqli_fetch_array($result);
                     echo($row[0]); ?>" class="colorSelector">
 
@@ -238,9 +245,9 @@
             <!--title-->
             <h3>Change Board Title</h3>
 
-            <form action="title.php" method="POST">
+            <form action="title.php?currentTableName=<?php echo $currentTableName;?>" method="POST">
                 <input type="text" name="title" placeholder="<?php
-                    $result = $mysqli->query("SELECT title FROM other WHERE id=1") or die($mysqli->error());
+                    $result = $mysqli->query("SELECT title FROM other WHERE tableName = '$currentTableName'") or die($mysqli->error());
                     $row = mysqli_fetch_array($result);
                     echo($row[0]); ?>">
 
@@ -252,7 +259,7 @@
             <!--picture-->
             <h3>Change backdrop picture</h3>
 
-            <form action="upload.php" method="POST" enctype="multipart/form-data">
+            <form action="upload.php?currentTableName=<?php echo $currentTableName;?>" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file">
 
                 <button type="submit" name="submit">Update Image</button>

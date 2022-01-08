@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+$currentTableName = $_GET['currentTableName'];
+
 if (isset($_POST['submit'])) {
     $file = $_FILES['file'];
     $fileName = $_FILES['file']['name'];
@@ -17,26 +19,39 @@ if (isset($_POST['submit'])) {
     if (in_array($fileActualExt, $allowed)) {
         if ($fileError === 0) {
             if ($fileSize < 1000000) {
-                $fileNameNew = "backdropImage".".".$fileActualExt;
-                $fileDestination = "images/".$fileNameNew;
+                if ($fileActualExt === "png") {
+                    echo("ADD PNG CONVERSIONS LATER");
+                } else {
+                    $fileNameNew = "backdropImage".".".$fileActualExt;
+                    $fileDestination = "images/".$fileNameNew;
 
-                move_uploaded_file($fileTmpName, $fileDestination);
+                    move_uploaded_file($fileTmpName, $fileDestination);
 
-                $_SESSION['message'] = "Image has been uploaded!";
-                $_SESSION['msg_type'] = "success";
+                    $_SESSION['message'] = "Image has been uploaded!";
+                    $_SESSION['msg_type'] = "success";
 
-                header("Location: index.php?UploadSuccess");
+                    header("Location: index.php?currentTableName=$currentTableName");
+                }
             } else {
-                echo "Your file is too big!";
+                $_SESSION['message'] = "Your file is too big!";
+                $_SESSION['msg_type'] = "danger";
+
+                header("Location: index.php?currentTableName=$currentTableName");
+
             }
         } else {
-            echo "There was an error uploading your file!";
+            $_SESSION['message'] = "There was an error uploading your file!";
+            $_SESSION['msg_type'] = "danger";
+
+            header("Location: index.php?currentTableName=$currentTableName");
         }
     } else {
-        echo "You cannot upload files of this type!";
+        $_SESSION['message'] = "You cannot upload files of this type!";
+        $_SESSION['msg_type'] = "danger";
+
+        header("Location: index.php?currentTableName=$currentTableName");
     }
 }
-
 
 
 ?>

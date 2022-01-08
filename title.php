@@ -4,6 +4,8 @@ session_start();
 
 include 'conn.php';
 
+$currentTableName = $_GET['currentTableName'];
+
 if (isset($_POST['saveTitle'])) {
     $title = $_POST['title'];
 
@@ -11,12 +13,12 @@ if (isset($_POST['saveTitle'])) {
     $mysqli->query("
     UPDATE other 
     SET title = '$title' 
-    WHERE id=1") or die($mysqli->error());
+    WHERE tableName = '$currentTableName'") or die($mysqli->error());
 
     $_SESSION['message'] = "Title has been saved!";
     $_SESSION['msg_type'] = "success";
 
-    header("location: index.php");
+    header("location: index.php?currentTableName=$currentTableName");
 }
 
 
