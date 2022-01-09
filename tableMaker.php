@@ -23,7 +23,7 @@ if (isset($_SESSION['username'])) {
 <a href="">Dashboard</a>
 <a href="">Getting Started</a>
 <a href="">FAQ</a>
-<button>Log Out</button>
+<a href="scripts/logout.php">Log Out</a>
 </div>
 <div class="rightPage">
     <div class="shape1"></div>
