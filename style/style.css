@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: #1a2238;
+  background-color: #08070e;
   overflow-x: hidden;
 }
 
@@ -36,26 +36,27 @@ tr {
   padding-bottom: 15px;
   display: flex;
   padding-left: 5px;
-  background-color: #eeeeee;
+  background-color: #2b2b2b;
   margin: auto;
   text-align: left;
   font-weight: 300;
   font-style: italic;
+  color: white;
 }
 
 h1 {
   text-align: center;
-  color: #f4db7d;
+  color: white;
 }
 
 table {
-  border-bottom: thin solid rgba(128, 128, 128, 0.384);
   margin-bottom: 25px;
+  border-bottom: 2px solid #3a3a3a;
 }
 
 .head {
-  background-color: #9daaf2;
-  color: #000000;
+  background-color: #f35c5c;
+  color: white;
   text-align: left;
   font-weight: 600;
   font-style: normal;
@@ -71,7 +72,8 @@ td {
 }
 
 tr:nth-child(even) {
-  background-color: #ffffff;
+  background-color: #3a3a3a;
+  color: white;
 }
 
 .edit,
@@ -85,7 +87,8 @@ tr:nth-child(even) {
 }
 
 .updating {
-  background-color: sandybrown;
+  background-color: rgba(146, 146, 146, 0.377);
+  border-radius: 10px;
 }
 
 .controlPanel {
@@ -96,7 +99,7 @@ tr:nth-child(even) {
 
 .controlPanelSection {
   display: flex;
-  background-color: #f4db7d;
+  background-color: #28272dab;
   padding: 20px;
   width: 350px;
   border-radius: 20px;
@@ -108,19 +111,29 @@ tr:nth-child(even) {
   font-size: 25px;
   text-align: center;
   margin-bottom: 15px;
+  color: white;
+}
+
+.controlPanelSection label {
+  color: rgb(173, 173, 173);
 }
 
 .controlPanelSection input {
   width: 100%;
-  padding: 12px 20px;
+  padding: 10px 5px;
   margin: 8px 0;
-  border-radius: 4px;
-  border: thin solid grey;
+  font-size: 18px;
+  background: none;
+  border: none;
+  outline: none;
+  color: white;
+
+  border-bottom: 2px solid grey;
 }
 
-.colorSelector {
+.controlPanelSection input.colorSelector {
   text-decoration: none;
-  width: 20px;
+  width: 100%;
   height: 100px;
   background-color: white;
   padding: 0 0;
@@ -131,8 +144,8 @@ tr:nth-child(even) {
   text-decoration: none;
   border: none;
   border-radius: 10px;
-  background-color: rgb(0, 0, 0);
-  color: white;
+  background-color: white;
+  color: black;
   cursor: pointer;
 }
 
@@ -195,4 +208,29 @@ tr:nth-child(even) {
 .outStock {
   background-color: rgb(87, 87, 87);
   color: white;
+}
+
+.previewBoard,
+.return {
+  padding: 10px;
+  background-color: rgb(240, 77, 77);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: 0.5s;
+  margin-bottom: 5px;
+}
+
+.previewBoard:hover,
+.return:hover {
+  padding: 30px;
+}
+
+.return {
+  margin-left: 20px;
+}
+
+.previewBoard {
+  margin-left: 10px;
 }

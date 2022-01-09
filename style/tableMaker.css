@@ -1,0 +1,289 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  max-width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+body {
+  background-color: #08070e;
+  color: #f4db7d;
+  height: 100vh;
+  overflow-x: hidden;
+  width: 100vw;
+}
+
+.individualBoard {
+  background-color: #28272dab;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 15px;
+  width: 200px;
+  height: 200px;
+}
+
+.organizedBoards {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  z-index: 1;
+}
+
+.tableName {
+  font-size: 30px;
+  color: white;
+  margin-bottom: 15px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 15px;
+}
+
+@media only screen and (max-width: 535px) {
+  .organizedBoards {
+    justify-content: center;
+  }
+
+  .individualBoard {
+    width: calc(100% - 30px);
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .tableName {
+  }
+}
+
+.indivBoard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+}
+
+.lowerSection {
+  width: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.lowerSection a {
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  background-color: rgb(224, 71, 24);
+  margin: 15px;
+}
+
+.editPage {
+  border: none;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  padding: 10px;
+  font-size: 16px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.pageWrapper {
+  display: flex;
+}
+
+.leftPage {
+  height: 100vh;
+  width: 75px;
+  background-color: rgb(58, 66, 180);
+  position: fixed;
+  transition: 0.5s;
+  z-index: 10;
+}
+
+.leftPage:hover {
+  width: 250px;
+}
+
+.rightPage {
+  height: 100vh;
+  margin-left: 75px;
+
+  overflow-x: hidden;
+}
+.topBar {
+  width: 100vw;
+  background-color: #28272dab;
+  backdrop-filter: blur(5px);
+}
+
+.dash {
+  font-size: 30px;
+  font-weight: 200;
+  color: grey;
+  margin-left: 15px;
+}
+
+.createNew {
+  margin-left: 15px;
+  margin-right: 15px;
+  width: auto;
+  background-color: #28272dab;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+}
+
+.createNewForm {
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+.createNewForm input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid grey;
+  padding: 10px 5px;
+  margin-bottom: 15px;
+  color: #ffffff;
+  font-size: 18px;
+  outline: none;
+}
+
+.dropdown,
+.createBoardButton {
+  outline: 0;
+
+  padding: 10px 5px;
+  background-image: none;
+  height: 100%;
+  background: none;
+  color: white;
+  cursor: pointer;
+  border: 1px solid black;
+  border: none;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.CNMB {
+  padding: 15px;
+  font-weight: 400;
+  color: white;
+}
+
+.createBoardButton {
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.dropdown::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #34495e;
+  pointer-events: none;
+}
+
+.subtextScript {
+  font-size: 16px;
+  color: grey;
+  padding: 0 15px;
+  margin-bottom: 5px;
+}
+
+.triangle {
+  position: absolute;
+  background-color: orange;
+  text-align: left;
+  z-index: -1;
+  margin-top: 600px;
+  margin-left: 325px;
+}
+
+.triangle:before,
+.triangle:after {
+  content: "";
+  position: absolute;
+  background-color: inherit;
+}
+.triangle,
+.triangle:before,
+.triangle:after {
+  width: 75px;
+  height: 75px;
+  border-top-right-radius: 30%;
+}
+
+.triangle {
+  transform: rotate(-60deg) skewX(-30deg) scale(1, 0.866);
+}
+.triangle:before {
+  transform: rotate(-135deg) skewX(-45deg) scale(1.414, 0.707)
+    translate(0, -50%);
+}
+.triangle:after {
+  transform: rotate(135deg) skewY(-45deg) scale(0.707, 1.414) translate(50%);
+}
+
+.shape1 {
+  z-index: -1;
+  position: absolute;
+  background: linear-gradient(#1845ad, #23a2f6);
+  height: 150px;
+  width: 350px;
+  margin-top: 200px;
+  margin-left: 35vw;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.shape2 {
+  z-index: -1;
+  position: absolute;
+  background: linear-gradient(#c24242, #ca3920);
+  height: 200px;
+  width: 200px;
+  border-radius: 15px;
+  margin-top: 650px;
+  margin-left: 150px;
+  overflow: hidden;
+  overflow-y: hidden;
+}
+
+.shape3 {
+  z-index: -1;
+  position: absolute;
+  background: linear-gradient(#5dc23e, #34ca20);
+  height: 200px;
+  width: 200px;
+  border-radius: 15px;
+  margin-top: 420px;
+  margin-left: 80vw;
+  overflow: hidden;
+  overflow-y: hidden;
+  border-radius: 50%;
+}

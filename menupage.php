@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="menupage.css">
+    <title>Menu Board</title>
+    <link rel="stylesheet" href="style/menupage.css">
 </head>
 <body>
 
 <?php 
         include 'scripts/conn.php';
-        $result = $mysqli->query('SELECT * from data');
+
+        $currentTableName = $_GET['currentTableName'];
+
+        $result = $mysqli->query("SELECT * from data WHERE tableGroup = '$currentTableName'");
+
 
         ?>
 
         <div class="pageTitle">
             <?php
-                    $myTitle = $mysqli->query("SELECT title FROM other WHERE id=1") or die($mysqli->error());
+                    $myTitle = $mysqli->query("SELECT title FROM other WHERE tableName = '$currentTableName'") or die($mysqli->error());
                     $row = mysqli_fetch_array($myTitle);
                     echo($row[0]); 
             ?>
@@ -66,7 +70,7 @@
         .subtitle,
         .pageTitle {
             color: <?php
-                    $result = $mysqli->query("SELECT color FROM other WHERE id=1") or die($mysqli->error());
+                    $result = $mysqli->query("SELECT color FROM other WHERE tableName = '$currentTableName'") or die($mysqli->error());
                     $row = mysqli_fetch_array($result);
                     echo($row[0]); ?>;!
         }

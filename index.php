@@ -11,10 +11,12 @@ if (isset($_SESSION['username'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Board Generator</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
+    <a href="tablemaker.php" class="return">RETURN</a>
+    <a target = "_blank" class="previewBoard" href="menupage.php?currentTableName=<?php echo $currentTableName ?>">Preview Board</a>
     <?php require_once 'scripts/process.php'; 
 
 
@@ -22,6 +24,7 @@ if (isset($_SESSION['username'])) {
 
     
 
+    
     //Message section displayed when a button is successfully clicked and processed in database.
     if (isset($_SESSION['message'])): ?>
         <div class="alert alert-<?=$_SESSION['msg_type']?>">
@@ -39,8 +42,7 @@ if (isset($_SESSION['username'])) {
     $result = $mysqli->query('SELECT * from data WHERE tableGroup = "'.$currentTableName.'"');?>
 
 
-    <a href="tablemaker.php">RETURN</a>
-    <a target = "_blank" href="menupage.php">Preview Board</a>
+
     <!--- Displaying all elements in database --->
     <h1><?php echo $currentTableName?></h1>
     <div class="">
