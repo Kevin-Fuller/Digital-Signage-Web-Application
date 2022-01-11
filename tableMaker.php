@@ -16,11 +16,12 @@ if (isset($_SESSION['username'])) {
 <body>
     <?php include 'scripts/conn.php';
 
-    $result = $mysqli->query('SELECT * from tablegenerator'); ?>
+    $currentUser = $_SESSION['username'];
+    $result = $mysqli->query("SELECT * from tablegenerator WHERE user = '$currentUser'"); ?>
     <div class="pageWrapper">
         
 <div class="leftPage">
-<a href="">Dashboard</a>
+<a href="" class="active">Dashboard</a>
 <a href="">Getting Started</a>
 <a href="">FAQ</a>
 <a href="scripts/logout.php">Log Out</a>
@@ -31,18 +32,18 @@ if (isset($_SESSION['username'])) {
     <div class="shape3"></div>
     <div class="triangle"></div>
     <div class="topBar">
-        <h1 class="dash">Dashboard</h1>
+        <h1 class="dash">Dashboard: Welcome <?php echo($_SESSION['username']); ?></h1>
     </div>
 
     <div class="organizedBoards">
     <?php while ($row = $result->fetch_assoc()): ?>
         <div class="individualBoard">
-            <form class="indivBoard" action="index.php?currentTableName=<?php echo $row['userTableName']?>" method="POST">
-                <input type="hidden" name="tableName" value="<?php echo $row['userTableName']?>">
+            <form class="indivBoard" action="index.php?currentTableName=<?php echo $row['tableName']?>" method="POST">
+                <input type="hidden" name="tableName" value="<?php echo $row['tableName']?>">
                 <div class="tableName"><?php echo $row['userTableName'] ?></div>
                 <div class="lowerSection"><button class="editPage" type="submit">Edit</button>
-                <a onclick="return confirm('Are you sure you wish to delete this board? You will be unable to recover it!')" href="scripts/createNewBoard.php?delete=<?php echo $row['userTableName']?>">Delete</a></div>
-                <input type="hidden" name="tableName" value="<?php echo $row['userTableName']?>">
+                <a onclick="return confirm('Are you sure you wish to delete this board? You will be unable to recover it!')" href="scripts/createNewBoard.php?delete=<?php echo $row['tableName']?>">Delete</a></div>
+                <input type="hidden" name="tableName" value="<?php echo $row['tableName']?>">
             </form>
     </div>
     <?php endwhile;?> 

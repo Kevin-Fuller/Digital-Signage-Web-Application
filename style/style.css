@@ -213,7 +213,7 @@ tr:nth-child(even) {
 .previewBoard,
 .return {
   padding: 10px;
-  background-color: rgb(240, 77, 77);
+  background-color: #f35c5c;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   text-decoration: none;

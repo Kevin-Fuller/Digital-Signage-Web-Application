@@ -1,17 +1,19 @@
 <?php 
 include "conn.php";
 
-
+session_start();
 
 
 
 if (isset($_POST['submitNewTable'])) {
     $tableType = $_POST['type'];
     $tableName = $_POST['userTableName'];
+    $username = $_SESSION['username'];
+    $userTableName = $username.$tableName;
     
-    $mysqli->query("INSERT INTO tablegenerator (tableName, userTableName, tableType) VALUES('$tableName', '$tableName', '$tableType')") or die($mysqli->error);
+    $mysqli->query("INSERT INTO tablegenerator (tableName, userTableName, tableType, user) VALUES('$userTableName', '$tableName', '$tableType', '$username')") or die($mysqli->error);
 
-    $mysqli->query("INSERT INTO other (color, title, tableName) VALUES('#FFFFFF', 'Title', '$tableName')") or die($mysqli->error);
+    $mysqli->query("INSERT INTO other (color, title, tableName) VALUES('#FFFFFF', 'Title', '$userTableName')") or die($mysqli->error);
     
     header("location: ../tableMaker.php");
 }

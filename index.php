@@ -1,7 +1,20 @@
 <?php
 session_start();
+include 'scripts/conn.php';
 
-if (isset($_SESSION['username'])) {
+
+$currentTableName = $_GET['currentTableName'];
+$currentUserOnline = $_SESSION['username'];
+$verifyUser = $mysqli->query('SELECT * from tablegenerator WHERE tableName = "'.$currentTableName.'"');
+
+
+$checkUserName = ($verifyUser->fetch_assoc());
+$userWhoOwnsTable = ($checkUserName['user']);
+
+
+if (isset($currentUserOnline)) {
+    if($userWhoOwnsTable === $currentUserOnline) {
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +33,7 @@ if (isset($_SESSION['username'])) {
     <?php require_once 'scripts/process.php'; 
 
 
-    $currentTableName = $_GET['currentTableName'];
+
 
     
 
@@ -38,13 +51,14 @@ if (isset($_SESSION['username'])) {
 
     <!---Connecting to database--->
     <?php 
-    include 'scripts/conn.php';
-    $result = $mysqli->query('SELECT * from data WHERE tableGroup = "'.$currentTableName.'"');?>
+    $result = $mysqli->query('SELECT * from data WHERE tableGroup = "'.$currentTableName.'"');
 
-
-
+    
+    $ourTableName = $mysqli->query('SELECT userTableName from tablegenerator WHERE tableName = "'.$currentTableName.'"');
+    $grabTable = $ourTableName->fetch_assoc();
+    ?>
     <!--- Displaying all elements in database --->
-    <h1><?php echo $currentTableName?></h1>
+    <h1><?php echo $grabTable['userTableName'];?></h1>
     <div class="">
         <table class="menuPageContent">
             <tr class="head">
@@ -281,6 +295,9 @@ if (isset($_SESSION['username'])) {
 </html>
 
 <?php
+    }else {
+        header("Location: tableMaker.php");
+    }
 } else {
     header("Location: login.php");
 }
