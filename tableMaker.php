@@ -22,8 +22,8 @@ if (isset($_SESSION['username'])) {
         
 <div class="leftPage">
 <a href="" class="active">Dashboard</a>
-<a href="">Getting Started</a>
-<a href="">FAQ</a>
+<a href="gettingstarted/">Getting Started</a>
+<a href="faq/">FAQ</a>
 <a href="scripts/logout.php">Log Out</a>
 </div>
 <div class="rightPage">
@@ -32,7 +32,7 @@ if (isset($_SESSION['username'])) {
     <div class="shape3"></div>
     <div class="triangle"></div>
     <div class="topBar">
-        <h1 class="dash">Dashboard: Welcome <?php echo($_SESSION['username']); ?></h1>
+        <h1 class="dash">Dashboard: <br>Welcome <?php echo($_SESSION['username']); ?></h1>
     </div>
 
     <div class="organizedBoards">
