@@ -30,11 +30,50 @@
             <polyline points="11 12 12 12 12 16 13 16" />
             </svg>
         </button>
-        <button onclick="fillInformation()" id="demo">Demo Mode</button>
-        <script>
-            function fillInformation(){
-                document.getElementById('uName').value="test1";
-                document.getElementById('pWord').value="test2";
+        <button id="demo">Demo Mode</button>
+
+    </div>
+
+    <div id="popup">
+        <button id="close" onclick="closePopup()">X</button>
+        <div class="firstCollection">
+        <h2>Warning</h2>
+        <p>Demo mode is made to purely show off the application to other developers. Any information entered under the demo user account will automatically be reset the next time a user logs in.</p>
+        </div>
+        <div class="secondCollection">
+        <h4>Ways to test the app:</h4>
+        <ul>
+            <li>Create a new menu board</li>
+            <li>Delete an existing menu board</li>
+            <li>Edit a menu board</li>
+            <li>Add a new item to a menu board</li>
+            <li>Modify an item on a menu board</li>
+            <li>Change the color of the menu board</li>
+            <li>Change an item to out of stock</li>
+            <li>Preview the Menu Board</li>
+            <li>Try accessing the app from a non-logged in account</li>
+            <li>Log out of the app</li>
+        </ul>
+        <div class="buttonContainerDemo">
+            <button class="demoAccount" id="ac1" onclick="fillInformation1()">Account 1</button>
+            <button class="demoAccount" class="demoAccount2" id="ac2" onclick="fillInformation2()">Account 2</button>
+        </div>
+        </div>
+    </div>
+    <p class="dev">Developed by <a href="https://kevinfuller.me" class="name" target="_blank">Kevin Fuller</p>
+
+
+    <script>
+            function fillInformation1(){
+                document.getElementById('uName').value="DemoUser1";
+                document.getElementById('pWord').value="demopassword1";
+                closePopup();
+            }
+
+            function fillInformation2(){
+                document.getElementById('uName').value="DemoUser2";
+                document.getElementById('pWord').value="demopassword2";
+                closePopup();
             }
 
             document.getElementById("demo").addEventListener("click", function() {
@@ -47,15 +86,10 @@
 
 
 
-        </script>
-    </div>
 
-    <div id="popup">
-        <button id="close" onclick="closePopup()">X</button>
-        <h2>Warning</h2>
-        <p>Demo mode is made to purely show off the application. Any information entered under the demo user account will automatically be reset the next time a user logs in.</p>
-    </div>
-    <p class="dev">Developed by <a href="https://kevinfuller.me" class="name" target="_blank">Kevin Fuller</p>
+
+    </script>
+
 </body>
 </html>
 
@@ -64,6 +98,7 @@ session_start();
 
 include 'scripts/conn.php';
 
+include 'scripts/resetDemoUsers.php';
 
 if (isset($_POST['username']) && isset($_POST['password'])) {
     

@@ -210,14 +210,28 @@ form {
   position: absolute;
   background-color: rgb(255, 255, 255);
   z-index: 100;
-  max-width: 320px;
+  max-width: 820px;
   border-radius: 10px;
   transition: 0.3s;
   display: none;
 }
 
 #popup.active {
-  display: block;
+  display: flex;
+}
+.firstCollection {
+  width: 50%;
+  border-right: 1px solid black;
+}
+
+@media only screen and (max-width: 855px) {
+  #popup {
+    max-width: 320px;
+    flex-direction: column;
+  }
+  .firstCollection {
+    width: 100%;
+  }
 }
 
 #popup h2 {
@@ -225,6 +239,7 @@ form {
   text-align: center;
   margin-bottom: 10px;
   margin-top: 10px;
+  font-size: 25px;
 }
 
 #popup p {
@@ -232,16 +247,52 @@ form {
   margin-bottom: 50px;
 }
 
+#popup h4 {
+  text-align: center;
+  font-size: 18px;
+  padding: 5px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 25px;
+}
+
+#popup ul {
+  list-style-type: none;
+}
+
+#popup ul li {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
 #close {
   border: none;
   background-color: rgb(0, 0, 0);
   border-radius: 50%;
   color: white;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   position: absolute;
   right: 5px;
   top: 5px;
   font-size: 20px;
   cursor: pointer;
+}
+
+.demoAccount {
+  background: none;
+  border: none;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.buttonContainerDemo {
+  display: flex;
+  justify-content: space-between;
 }
