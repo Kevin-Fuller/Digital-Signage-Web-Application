@@ -234,3 +234,20 @@ tr:nth-child(even) {
 .previewBoard {
   margin-left: 10px;
 }
+
+.toggle {
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  float: right;
+}
+
+.toggleOn {
+  background-color: rgb(87, 87, 87);
+}
+
+.toggleOff {
+  background-color: rgb(27, 156, 44);
+}

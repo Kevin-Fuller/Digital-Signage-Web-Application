@@ -63,8 +63,15 @@
                     <?php
                         
                      } ?>
-            <?php endwhile;?>   
+            <?php endwhile;
             
+
+            $result = $mysqli->query("SELECT imageToggledOnOff FROM other WHERE tableName='$currentTableName'") or die($mysqli->error());
+            $row = mysqli_fetch_array($result);
+
+            if($row['imageToggledOnOff'] === "1"){ ?>
+    <div id="overlayImage"></div>
+    <?php }?>
         </div>
         <style> 
         .subtitle,
@@ -76,6 +83,9 @@
         }
         body{
             background-image: url("images/<?php echo($currentTableName)?>.jpg");
+        }
+        #overlayImage {
+            background-image: url("images/<?php echo($currentTableName)?>Overlay.jpg");
         }
         </style>
     

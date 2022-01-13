@@ -13,8 +13,12 @@ while ($row = $grabTables->fetch_assoc()):
         
         //Delete any images uploaded by demo account
         $imagePath = 'images/'.$tableToDelete.'.jpg';
+        $imagePath2 = 'images/'.$tableToDelete.'Overlay.jpg';
         if (file_exists($imagePath)){
                 unlink($imagePath);
+        }
+        if (file_exists($imagePath2)){
+                unlink($imagePath2);
         }
 
 

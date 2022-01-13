@@ -289,6 +289,38 @@ if (isset($currentUserOnline)) {
             </form>
         </div>
 
+
+        <div class="controlPanelSection">
+            <!--picture-->
+            <h3>Overlay Picture</h3>
+
+            <form action="scripts/uploadOverlay.php?currentTableName=<?php echo $currentTableName;?>" method="POST" enctype="multipart/form-data">
+                <input type="file" name="file">
+
+                <button type="submit" name="submit">Update Image</button>
+
+                <?php 
+            
+            $result = $mysqli->query("SELECT imageToggledOnOff FROM other WHERE tableName='$currentTableName'") or die($mysqli->error());
+            $row = mysqli_fetch_array($result);
+            
+            //if an overlay image has been uplaoded, show the button
+            $imagePath = 'images/'.$currentTableName.'Overlay.jpg';
+            if (file_exists($imagePath)){
+
+    
+            if($row['imageToggledOnOff'] === "0"){ ?>
+                <a class="toggleOn toggle" href=<?php echo("scripts/toggleOverlay.php?toggle=on&currentTableName=".$currentTableName); ?> type="submit" name="toggleOn">Image Disabled</a>
+                <?php
+            } else { ?>
+                <a class="toggleOff toggle" href=<?php echo("scripts/toggleOverlay.php?toggle=off&currentTableName=".$currentTableName); ?> type="submit" name="toggleOff">Image Enabled</a>
+            <?php }}
+            ?>
+            </form>
+
+        
+        </div>
+
     </div>
 
 </body>

@@ -51,6 +51,7 @@ if (isset($_GET['delete'])){
 
 
     unlink('../images/'.$tableName.'.jpg');
+    unlink('../images/'.$tableName.'Overlay.jpg');
 
     header("location: ../tableMaker.php");
 
