@@ -74,6 +74,9 @@
                     $row = mysqli_fetch_array($result);
                     echo($row[0]); ?>;!
         }
+        body{
+            background-image: url("images/<?php echo($currentTableName)?>.jpg");
+        }
         </style>
     
 </body>

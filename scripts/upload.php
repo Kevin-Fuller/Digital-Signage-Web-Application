@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
                 if ($fileActualExt === "png") {
                     echo("ADD PNG CONVERSIONS LATER");
                 } else {
-                    $fileNameNew = "backdropImage".".".$fileActualExt;
+                    $fileNameNew = $currentTableName.".".$fileActualExt;
                     $fileDestination = "../images/".$fileNameNew;
 
                     move_uploaded_file($fileTmpName, $fileDestination);

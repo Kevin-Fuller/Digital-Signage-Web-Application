@@ -310,3 +310,13 @@ body {
   overflow-y: hidden;
   border-radius: 50%;
 }
+
+.alert-danger {
+  background-color: rgb(235, 72, 72);
+  color: white;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 15px;
+}

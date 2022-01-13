@@ -34,6 +34,17 @@ if (isset($_SESSION['username'])) {
     <div class="topBar">
         <h1 class="dash">Dashboard: <br>Welcome <?php echo($_SESSION['username']); ?></h1>
     </div>
+    <?php
+    //Message section displayed when a button is successfully clicked and processed in database.
+    if (isset($_SESSION['message'])): ?>
+        <div class="alert alert-<?=$_SESSION['msg_type']?>">
+
+            <?php 
+            echo $_SESSION['message'];
+            unset($_SESSION['message']); ?>
+
+        </div>
+    <?php endif ?>
 
     <div class="organizedBoards">
     <?php while ($row = $result->fetch_assoc()): ?>

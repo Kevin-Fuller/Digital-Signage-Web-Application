@@ -11,6 +11,13 @@ while ($row = $grabTables->fetch_assoc()):
 
         $tableToDelete = $row['tableName'];
         
+        //Delete any images uploaded by demo account
+        $imagePath = 'images/'.$tableToDelete.'.jpg';
+        if (file_exists($imagePath)){
+                unlink($imagePath);
+        }
+
+
         //Delete from other information table
         $mysqli->query("Delete from other WHERE tableName = '$tableToDelete'");
     
