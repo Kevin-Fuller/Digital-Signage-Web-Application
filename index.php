@@ -321,6 +321,29 @@ if (isset($currentUserOnline)) {
         
         </div>
 
+        <div class="controlPanelSection">
+            <!--picture-->
+            <h3>Festive Mode</h3>
+            
+            <?php
+            $result = $mysqli->query("SELECT festiveMode FROM other WHERE tableName='$currentTableName'") or die($mysqli->error());
+            $row = mysqli_fetch_array($result);
+            
+
+
+    
+            if($row['festiveMode'] === "0"){ ?>
+                <a class="toggleOn toggle" href=<?php echo("scripts/toggleFestive.php?toggle=on&currentTableName=".$currentTableName); ?> type="submit" name="toggleOn">Disabled</a>
+                <?php
+            } else { ?>
+                <a class="toggleOff toggle" href=<?php echo("scripts/toggleFestive.php?toggle=off&currentTableName=".$currentTableName); ?> type="submit" name="toggleOff">Enabled</a>
+            <?php }
+            ?>
+            </form>
+
+        
+        </div>
+
     </div>
 
 </body>

@@ -18,7 +18,6 @@
 
 
         ?>
-
         <div class="pageTitle">
             <?php
                     $myTitle = $mysqli->query("SELECT title FROM other WHERE tableName = '$currentTableName'") or die($mysqli->error());
@@ -71,6 +70,13 @@
 
             if($row['imageToggledOnOff'] === "1"){ ?>
     <div id="overlayImage"></div>
+    <?php }
+
+    $result = $mysqli->query("SELECT festiveMode FROM other WHERE tableName='$currentTableName'") or die($mysqli->error());
+            $row = mysqli_fetch_array($result);
+
+            if($row['festiveMode'] === "1"){ ?>
+    <div id="festive"></div>
     <?php }?>
         </div>
         <style> 
