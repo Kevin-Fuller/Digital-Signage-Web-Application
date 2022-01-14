@@ -42,8 +42,15 @@ if (isset($_POST['submitNewTable'])) {
 
 if (isset($_GET['delete'])){
     $tableName = $_GET['delete'];
+    
+    $results = $mysqli->query("SELECT * from data WHERE tableGroup='$tableName'") or die($mysqli->error());
 
-    $mysqli->query("DELETE FROM data WHERE tablegroup='$tableName'") or die($mysqli->error);
+    while ($rows = $results->fetch_assoc()):
+        $ourDescription = $rows['description'];
+        $mysqli->query("DELETE from smalltables WHERE tableAssociatedName = '$ourDescription'");
+    endwhile;
+
+    $mysqli->query("DELETE FROM data WHERE tableGroup='$tableName'") or die($mysqli->error);
 
     $mysqli->query("DELETE FROM other WHERE tableName='$tableName'") or die($mysqli->error);
 

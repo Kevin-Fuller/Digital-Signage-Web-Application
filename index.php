@@ -14,8 +14,14 @@ $userWhoOwnsTable = ($checkUserName['user']);
 
 if (isset($currentUserOnline)) {
     if($userWhoOwnsTable === $currentUserOnline) {
+        
+
+
+
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +35,7 @@ if (isset($currentUserOnline)) {
 
 <body>
     <a href="tablemaker.php" class="return">RETURN</a>
-    <a target = "_blank" class="previewBoard" href="menupage.php?currentTableName=<?php echo $currentTableName ?>">Preview Board</a>
+    <a target = "_blank" class="previewBoard" href="menupage.php?currentTableName=<?php echo $currentTableName ?>" title="Boards are typically viewed in 1080x1920 resolution">Preview Board</a>
     <?php require_once 'scripts/process.php'; 
 
 
@@ -48,6 +54,7 @@ if (isset($currentUserOnline)) {
 
         </div>
     <?php endif ?>
+
 
     <!---Connecting to database--->
     <?php 
@@ -94,7 +101,12 @@ if (isset($currentUserOnline)) {
                 <td class="buttons">
             
             <?php //Expand if I add new things here
-            }else{ ?><div></div><?php }?>
+            }elseif ($row['type']=="isTable"){?>
+                <td><b>Table</b></td>
+                <td> </td>
+                <td><b></b><?php echo $row['description']; ?></td>
+                <td class="buttons">
+            <?php }else{ ?><div></div><?php }?>
 
 
             <!-----------Button Section ----------->
@@ -117,6 +129,12 @@ if (isset($currentUserOnline)) {
                     <a href="index.php?editItalics=<?php echo $row['id'].'&currentTableName='.$currentTableName; ?>"
                         class='edit'><span>Edit</span></a>
             
+            <?php //If it is table
+            } elseif ($row['type']=='isTable'){?>
+
+                    <a href="index.php?editTable=<?php echo $row['description'].'&currentTableName='.$currentTableName; ?>"
+                        class='edit'><span>Edit</span></a>
+
             <?php //If I ever add new items add buttons here
             } else{ ?><?php }?>
 
@@ -264,6 +282,105 @@ if (isset($currentUserOnline)) {
             </form>
         </div>
 
+
+        <div class="controlPanelSection">
+            <!--2 table-->
+            <h3>2 Column Table</h3>
+            <?php 
+            $editingTable = "";
+            if (isset($_GET['editTable'])){
+                $editingTable = $_GET['editTable']; 
+            }
+            
+            if($editingTable === ""){ ?>
+                <form method="POST" action="scripts/smallTable.php?currentTableName=<?php echo $currentTableName;?>">
+                <label>Create a new 2 column table</label>
+                <input type="text" name="newTableName" placeholder="Table Name">
+                <button type="submit" name="createNew2Table">Create</button>
+            </form>
+            <?php } else {
+
+
+                $result = $mysqli->query("SELECT * from smalltables WHERE tableAssociatedName = '$editingTable'");
+
+                ?>
+                <div class="updating">
+                <?php
+                 $myIDForTable ="";
+                if (isset($_GET['id'])){
+                    $myIDForTable = $_GET['id']; 
+                } 
+
+                while ($row = $result->fetch_assoc()):
+                    
+                    $currentId = $row['id']; 
+                    
+                    //this is if we are editing the table line
+                    if ($currentId === $myIDForTable) { ?>
+
+                    <form method="POST" action="scripts/smallTable.php?currentTableName=<?php echo ($currentTableName)?>" >
+                        
+                        <input type="hidden" name="id" value="<?php echo($currentId);?>">
+                        <input type="hidden" name="editTable" value="<?php echo($editingTable);?>">
+                        <div class="nonEdit2">
+                        <input type="text" name="tLeft" value='<?php echo($row['tableLeft'])?>'>
+                        <input type="text" name="tRight" value='<?php echo($row['tableRight'])?>'>
+            
+                            
+
+                        <button type="submit" name="update2Table">Update</button>
+                        </div>
+
+                    </form>
+ 
+
+                    <?php } else {
+                    ?>
+
+                        <div class="nonEdit2">
+                        <p><?php echo($row['tableLeft'])?></p>
+                        <p><?php echo($row['tableRight'])?></p>
+                   
+                        
+                        <!--store id in the edit and that it how we will do shenanagins -->
+                        <a href=<?php 
+                       
+
+                        echo("?id=$currentId&currentTableName=$currentTableName&editTable=$editingTable"); ?>>Edit</a>
+                        </div>
+
+                    
+        
+<?php }
+                endwhile;?>
+
+                <div class="horizontalLine2"></div>
+
+                <label>Add a New Row:</label>
+                <form method="POST" action="scripts/smallTable.php?currentTableName=<?php echo ($currentTableName)?>" >
+                        <input type="hidden" name="editTable" value="<?php echo($editingTable);?>">
+                        <div class="twoTableEditContainer">
+                        <input type="text" name="tLeft" placeholder="Left">
+                        <input type="text" name="tRight" placeholder="Right">
+        
+                            
+
+                        <button type="submit" name="add2Table" class="addNewRow">Add</button>
+                        </div>
+                    </form>
+                    
+                
+            </div>
+                <?php
+            }
+
+            ?>
+
+        
+        </div>
+
+
+
         <div class="controlPanelSection">
             <!--title-->
             <h3>Change Board Title</h3>
@@ -344,8 +461,8 @@ if (isset($currentUserOnline)) {
         
         </div>
 
-    </div>
 
+    </div>
 </body>
 </html>
 

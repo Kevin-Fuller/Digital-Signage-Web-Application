@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -34,14 +38,15 @@ body {
 }
 
 .pageTitle {
-  height: 15vh;
-  font-size: 15vh;
+  height: 10vh;
+  font-size: 10vh;
   overflow: hidden;
   text-align: center;
+  font-family: "Bebas Neue";
 }
 
 .pageContent {
-  height: 85vh;
+  height: 87vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -50,6 +55,8 @@ body {
 .menuItemCell {
   background-color: rgba(128, 128, 128, 0.137);
   font-size: 2.5vh;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .topMenuItemCell {
@@ -58,19 +65,25 @@ body {
 }
 
 .leftMenu {
-  width: 80vw;
   overflow: hidden;
+  font-size: 2.6vh;
+  font-family: "Roboto Slab", serif;
+  font-weight: 600;
 }
 
 .rightMenu {
-  width: 20vw;
   text-align: right;
   overflow: hidden;
+  font-family: "Roboto Slab", serif;
+  white-space: pre-wrap;
+  font-weight: 600;
 }
 
 .bottomMenuItemCell {
-  white-space: nowrap;
   overflow: hidden;
+  font-size: 2vh;
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
 }
 
 .outStock {
@@ -85,10 +98,46 @@ body {
   text-align: center;
   overflow: hidden;
   height: 7vh;
+  font-family: "Bebas Neue";
 }
 
 .italics {
   text-align: center;
-  width: 100%;
   font-style: italic;
+  font-size: 2.5vh;
+  font-family: "Open Sans", sans-serif;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  border-collapse: collapse;
+}
+
+tr:first-child td {
+  border-bottom: 1vw solid white;
+  border-right: none;
+  border-left: none;
+}
+
+.tableleft {
+  border-right: 1vw solid white;
+}
+
+.tableright {
+  border-left: 1vw solid white;
+}
+
+td {
+  padding-left: 5vw;
+  padding-right: 5vw;
+  text-align: center;
+  width: 30vw;
+  font-family: "Roboto Slab", serif;
+  font-weight: 600;
+  font-size: 2.6vh;
 }

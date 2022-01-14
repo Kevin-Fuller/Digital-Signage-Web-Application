@@ -60,7 +60,32 @@
                      } elseif ($row['type']=="isItalics"){ ?>
                         <h2 class="italics"><?php echo $row['description']; ?></h2>
                     <?php
-                        
+                         } elseif ($row['type']=="isTable"){ 
+
+                            $ourCurrentTable = $row['description'];
+                            $smallTableResults = $mysqli->query("SELECT * from smalltables WHERE tableAssociatedName = '$ourCurrentTable'");?>
+
+                            <table>
+
+                            <?php
+                            
+                            while ($ourRows = $smallTableResults->fetch_assoc()):
+                                ?>
+
+                                <tr>
+                                    <td class="tableleft"><?php echo($ourRows['tableLeft']);?></td>
+                                    <td class="tableright"><?php echo($ourRows['tableRight']);?></td>
+
+
+                            </tr>
+                            
+                            <?php
+                            endwhile
+
+                                
+                            ?></table>
+
+                         <?php
                      } ?>
             <?php endwhile;
             

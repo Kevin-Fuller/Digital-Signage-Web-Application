@@ -10,7 +10,16 @@ $grabTables = $mysqli->query("SELECT * from tablegenerator WHERE user = 'DemoUse
 while ($row = $grabTables->fetch_assoc()):
 
         $tableToDelete = $row['tableName'];
-        
+
+
+        $results = $mysqli->query("SELECT * from data WHERE tableGroup='$tableToDelete'") or die($mysqli->error());
+
+        while ($rows = $results->fetch_assoc()):
+                $ourDescription = $rows['description'];
+                $mysqli->query("DELETE from smalltables WHERE tableAssociatedName = '$ourDescription'");
+        endwhile;
+
+
         //Delete any images uploaded by demo account
         $imagePath = 'images/'.$tableToDelete.'.jpg';
         $imagePath2 = 'images/'.$tableToDelete.'Overlay.jpg';

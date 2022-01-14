@@ -53,7 +53,20 @@ if (isset($_POST['saveItalics'])) {
 
 if(isset($_GET['delete'])) {
     $id = $_GET['delete'];
+
+    $ourDescription = '';
+
+    $results = $mysqli->query("SELECT * from data WHERE id=$id") or die($mysqli->error());
+
+    while ($row = $results->fetch_assoc()):
+        $ourDescription = $row['description'];
+        $mysqli->query("DELETE from smalltables WHERE tableAssociatedName = '$ourDescription'") or die($mysqli->error());
+    endwhile;
+
+
     $mysqli->query("DELETE from data WHERE id=$id") or die($mysqli->error());
+
+
 
     $_SESSION['message'] = "Record has been deleted!";
     $_SESSION['msg_type'] = "danger";
