@@ -1,4 +1,4 @@
-Menu Maker
+## Menu Maker
 
 Menu Maker is a web application built to assist in the live updating of digital signage boards. Originally built for BuffaLouie's, a wing restaraunt in Bloomington Indiana, I eventually expanded on the functionality to the point where many different restaraunts around Bloomington utilize it to keep their menu boards updated.
 
